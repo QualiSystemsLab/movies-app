@@ -42,8 +42,9 @@ jobs:
   publish-docker-image:
     needs: integration-test
     runs-on: ubuntu-latest
-        - name: Tag the image as latest
-        - run: docker-compose --env-file latest.env build
-        - run: docker-compose --env-file test.env push
+    steps:
+      - name: Tag the image as latest
+      - run: docker-compose --env-file latest.env build
+      - run: docker-compose --env-file test.env push
 
 
