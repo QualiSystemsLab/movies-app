@@ -43,8 +43,5 @@ jobs:
     needs: integration-test
     runs-on: ubuntu-latest
     steps:
-      - name: Tag the image as latest
       - run: docker-compose --env-file latest.env build
       - run: docker-compose --env-file test.env push
-
-
