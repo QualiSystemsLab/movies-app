@@ -43,5 +43,6 @@ jobs:
     needs: integration-test
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v1
       - run: docker-compose --env-file latest.env build
-      - run: docker-compose --env-file test.env push
+      - run: docker-compose --env-file latest.env push
