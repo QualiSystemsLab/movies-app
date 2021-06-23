@@ -1,0 +1,20 @@
+spec_version: 1
+kind: blueprint
+metadata:
+  description: >
+    EKS deployment of movies-app
+clouds: 
+  - AWS/EKS
+applications:
+  - movies-ui:
+      input_values:
+        - API_URL: $colony.applications.movies-api.dns
+      depends_on:
+        - movies-api
+      
+  - movies-api:
+      input_values:
+        - DB_URL: $colony.applications.mongodb.dns
+      depends_on:
+        - mongodb
+  - mongodb:

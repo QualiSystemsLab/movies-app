@@ -1,0 +1,30 @@
+kind: application
+inputs:
+  - API_URL
+infrastructure:
+  connectivity:
+    external:
+      - port_info:
+          port: 80
+          path: ''
+  compute:
+    spec:        
+      kubernetes:
+        cpu: 250m
+configuration:
+  initialization:
+    script: movies-ui.sh
+  start:
+    script: movies-ui-command.sh
+  healthcheck:
+    timeout: 100
+    wait_for_ports: ALL
+source:
+  image:    
+    username: adminuser
+    docker_image:
+       - name: colonysamples/movies-ui
+         tag: latest
+         username: root
+  os_type: linux
+spec_version: 1

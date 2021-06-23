@@ -1,0 +1,21 @@
+version: "3.3"
+services:
+  movies-ui:
+    image: colonysamples/movies-ui:${TAG}
+    build: ./movies-ui
+    ports:
+      - 80:80
+    environment:
+      - API_URL=host.docker.internal
+  movies-api:
+    image: colonysamples/movies-api:${TAG}
+    build: ./movies-api
+    ports:
+      - 7000:7000
+      environment:
+      - DB_URL=host.docker.internal
+  db:
+    image: mongo
+    ports:
+      - 27017:27017
+    
