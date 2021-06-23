@@ -12,10 +12,10 @@ services:
     build: ./movies-api
     ports:
       - 7000:7000
-      environment:
+    environment:
       - DB_URL=host.docker.internal
   db:
-    image: mongo
+    image: mongo:4.4.6
     ports:
       - 27017:27017
     
