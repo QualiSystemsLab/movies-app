@@ -1,5 +1,10 @@
 spec_version: 1
 kind: blueprint
+inputs: 
+  - version:
+      description: What version do you wanna deploy?
+      default_value: 1234
+      optional: true
 metadata:
   description: >
     EKS deployment of movies-app
