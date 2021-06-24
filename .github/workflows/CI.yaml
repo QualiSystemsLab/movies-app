@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: echo $GITHUB_SHA
-      - run: export TAG=$GITHUB_SHA
+      - run: echo "TAG=$GITHUB_SHA" >> $GITHUB_ENV
       - run: echo $TAG
       - run: docker-compose build
       - run: docker login -u colonysamples -p ${{ secrets.DOCKERHUB_PASSWORD }}
