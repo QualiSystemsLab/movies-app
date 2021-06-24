@@ -45,4 +45,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: docker-compose --env-file latest.env build
+      - run: docker login -u colonysamples -p ${{ secrets.DOCKERHUB_PASSWORD }}
+
       - run: docker-compose --env-file latest.env push
