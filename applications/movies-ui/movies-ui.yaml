@@ -1,6 +1,8 @@
 kind: application
 inputs:
   - API_URL
+  - DOCKER_TAG
+
 infrastructure:
   connectivity:
     external:

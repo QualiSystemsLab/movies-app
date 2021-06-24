@@ -14,12 +14,15 @@ applications:
   - movies-ui:
       input_values:
         - API_URL: $colony.applications.movies-api.dns
+        - DOCKER_TAG: $version
+
       depends_on:
         - movies-api
       
   - movies-api:
       input_values:
         - DB_URL: $colony.applications.mongodb.dns
+        - DOCKER_TAG: $version
       depends_on:
         - mongodb
   - mongodb:

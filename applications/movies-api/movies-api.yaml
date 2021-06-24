@@ -1,6 +1,8 @@
 kind: application
 inputs:
   - DB_URL
+  - DOCKER_TAG
+
 infrastructure:
   connectivity:
     internal:
@@ -24,7 +26,7 @@ source:
     username: adminuser
     docker_image:
        - name: colonysamples/movies-api
-         tag: latest
+         tag: $DOCKER_TAG
          username: root
   os_type: linux
 spec_version: 1
