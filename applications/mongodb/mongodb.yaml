@@ -22,7 +22,7 @@ source:
     username: adminuser
     docker_image:
        - name: mongo
-         tag: latest
+         tag: 4.4.6
          username: root
   os_type: linux
 spec_version: 1
