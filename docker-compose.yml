@@ -1,14 +1,14 @@
 version: "3.3"
 services:
   movies-ui:
-    image: colonysamples/movies-ui:${GITHUB_SHA}
+    image: colonysamples/movies-ui:${TAG}
     build: ./movies-ui
     ports:
       - 80:80
     environment:
       - API_URL=host.docker.internal
   movies-api:
-    image: colonysamples/movies-api:${GITHUB_SHA}
+    image: colonysamples/movies-api:${TAG}
     build: ./movies-api
     ports:
       - 7000:7000
