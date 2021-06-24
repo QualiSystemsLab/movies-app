@@ -13,10 +13,9 @@ jobs:
   build:
     needs: validate
     runs-on: ubuntu-latest
-    env:
-      TAG: ${{ env.GITHUB_SHA}}
     steps:
       - uses: actions/checkout@v2
+      - run: export TAG=$GITHUB_SHA
       - run: docker-compose build
       - run: docker login -u colonysamples -p ${{ secrets.DOCKERHUB_PASSWORD }}
       - run: docker-compose push
