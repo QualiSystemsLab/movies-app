@@ -30,7 +30,6 @@ jobs:
         uses: QualiSystemsLab/colony-start-sb-action@v0.0.1
         with:
           space: Trial
-          automation: true
           blueprint_name: movies-app
           colony_token: ${{ secrets.COLONY_TOKEN }}
           duration: 60
