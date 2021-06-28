@@ -1,5 +1,5 @@
 # movies-app
-MERN stack Project implementation  (MongoDB, Express.js, React.js, and Node.js) on Quali's Colony
+MERN stack Project implementation  (MongoDB, Express.js, React.js, and Node.js) on Quali's Torque
 
 # Introduction
 
