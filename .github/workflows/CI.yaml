@@ -1,5 +1,5 @@
 name: CI
-on: [push]
+on: push
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -35,7 +35,7 @@ jobs:
           duration: 60
           timeout: 5
           inputs: version=$GITHUB_SHA
-          
+
       - name: Test link status code
         run: curl -I $(echo "${{ steps.start-sandbox.outputs.sandbox_shortcuts }}" | grep -o 'http.*' | head -c-4) | grep 200
       - name: Stop sandbox
