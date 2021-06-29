@@ -1,5 +1,5 @@
 name: CI
-on: [push,workflow_dispatch]
+on: [push]
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -34,6 +34,8 @@ jobs:
           colony_token: ${{ secrets.COLONY_TOKEN }}
           duration: 60
           timeout: 5
+          
+          inputs: 'version=$GITHUB_SHA'
       - name: Test link status code
         run: curl -I $(echo "${{ steps.start-sandbox.outputs.sandbox_shortcuts }}" | grep -o 'http.*' | head -c-4) | grep 200
       - name: Stop sandbox
@@ -49,6 +51,8 @@ jobs:
       TAG: latest
     steps:
       - uses: actions/checkout@v1
+      - run: echo "TAG=latest" >> $GITHUB_ENV
+      - run: echo $TAG
       - run: docker-compose build
       - run: docker login -u colonysamples -p ${{ secrets.DOCKERHUB_PASSWORD }}
       - run: docker-compose push
