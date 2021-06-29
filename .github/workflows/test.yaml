@@ -7,11 +7,6 @@ on:
         required: true
         default: 'latest'
 jobs:
-  printInputs:
-    runs-on: ubuntu-latest
-    steps:
-    - run: |
-        echo "version: ${{ github.event.inputs.version }}"
   integration-test:
     runs-on: ubuntu-latest
     steps: 
@@ -25,7 +20,7 @@ jobs:
           duration: 60
           timeout: 5
           inputs: version=${{ github.event.inputs.version}}
-          
+
       - name: Test link status code
         run: curl -I $(echo "${{ steps.start-sandbox.outputs.sandbox_shortcuts }}" | grep -o 'http.*' | head -c-4) | grep 200
       - name: Stop sandbox
