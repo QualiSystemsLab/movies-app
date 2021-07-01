@@ -24,7 +24,7 @@ jobs:
   integration-test:
     runs-on: ubuntu-latest
     env:
-      TOKEN: ${{ secrets.MY_GITHUB_PAT }}
+      TOKEN: ${{ secrets.PAT }}
     steps:
     - uses: actions/checkout@v2
 
