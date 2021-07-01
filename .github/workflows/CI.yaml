@@ -30,15 +30,11 @@ jobs:
 
     - name: run Api
       run: |
-        curl -H "Authorization: token $TOKEN" \
-        -X POST \
-        -H "Accept: application/vnd.github.v3+json" \
-        https://api.github.com/repos/QualiSystemsLab/movies-app/actions/workflows/workflowB.yml/dispatches \
-        -d '{"ref": "master", 
-             "inputs": {
-                "name": "trigger from api2",
-                "home": "test2"}
-        }'
+        curl --request POST \
+             --url https://api.github.com/repos/QualiSystemsLab/movies-app/actions/workflows/workflowB.yml/dispatches \
+             --header 'authorization: Bearer $TOKEN' \
+             --data '{"event_type": "hello"}' \
+              -H "Accept: application/vnd.github.v3+json" \
   publish:
     needs: integration-test
     runs-on: ubuntu-latest
