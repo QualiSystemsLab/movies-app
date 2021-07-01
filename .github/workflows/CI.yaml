@@ -21,7 +21,7 @@ jobs:
       - run: docker-compose build
       - run: docker login -u colonysamples -p ${{ secrets.DOCKERHUB_PASSWORD }}
       - run: docker-compose push
-  trigger:
+  integration-test:
     runs-on: ubuntu-latest
     env:
       TOKEN: ${{ secrets.MY_GITHUB_PAT }}
