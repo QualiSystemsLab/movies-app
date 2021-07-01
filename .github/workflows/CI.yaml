@@ -31,10 +31,9 @@ jobs:
     - name: run Api
       run: |
         curl --request POST \
-             --url https://api.github.com/repos/QualiSystemsLab/movies-app/actions/workflows/workflowB.yml/dispatches \
-             --header 'authorization: Bearer $TOKEN' \
-             --data '{"event_type": "hello"}' \
-              -H "Accept: application/vnd.github.v3+json" \
+          --url https://api.github.com/repos/QualiSystemsLab/movies-app/actions/workflows/test.yaml/dispatches \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'content-type: application/json' \
   publish:
     needs: integration-test
     runs-on: ubuntu-latest
