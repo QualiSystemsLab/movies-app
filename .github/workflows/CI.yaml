@@ -26,12 +26,14 @@ jobs:
     env:
       TOKEN: ${{ secrets.MY_GITHUB_PAT }}
     steps:
-      - name: run Api
-        run: |
+    - uses: actions/checkout@v2
+
+    - name: run Api
+      run: |
         curl -u ":$TOKEN" \
         -X POST \
         -H "Accept: application/vnd.github.v3+json" \
-        https://api.github.com/repos/QualiSystemsLab/movies-app/actions/workflows/test.yaml/dispatches \
+        https://api.github.com/repos/QualiSystemsLab/movies-app/actions/workflows/workflowB.yml/dispatches \
         -d '{"ref": "master", 
              "inputs": {
                 "name": "trigger from api2",
