@@ -21,29 +21,22 @@ jobs:
       - run: docker-compose build
       - run: docker login -u colonysamples -p ${{ secrets.DOCKERHUB_PASSWORD }}
       - run: docker-compose push
-  integration-test:
-    needs: build
+  trigger:
     runs-on: ubuntu-latest
-    steps: 
-      - name: Start Colony Sandbox
-        id: start-sandbox
-        uses: QualiSystemsLab/colony-start-sb-action@v0.0.1
-        with:
-          space: Trial
-          blueprint_name: movies-app
-          colony_token: ${{ secrets.COLONY_TOKEN }}
-          duration: 60
-          timeout: 5
-          inputs: version=$GITHUB_SHA
-
-      - name: Test link status code
-        run: curl -I $(echo "${{ steps.start-sandbox.outputs.sandbox_shortcuts }}" | grep -o 'http.*' | head -c-4) | grep 200
-      - name: Stop sandbox
-        uses: QualiSystemsLab/colony-end-sb-action@v0.0.1
-        with:
-          space: Trial
-          sandbox_id: ${{ steps.start-sandbox.outputs.sandbox_id }}
-          colony_token: ${{ secrets.COLONY_TOKEN }}
+    env:
+      TOKEN: ${{ secrets.MY_GITHUB_PAT }}
+    steps:
+      - name: run Api
+        run: |
+        curl -u ":$TOKEN" \
+        -X POST \
+        -H "Accept: application/vnd.github.v3+json" \
+        https://api.github.com/repos/QualiSystemsLab/movies-app/actions/workflows/test.yaml/dispatches \
+        -d '{"ref": "master", 
+             "inputs": {
+                "name": "trigger from api2",
+                "home": "test2"}
+        }'
   publish:
     needs: integration-test
     runs-on: ubuntu-latest
