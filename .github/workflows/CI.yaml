@@ -33,7 +33,7 @@ jobs:
       run: |
         curl --request POST --fail \
           --url https://api.github.com/repos/QualiSystemsLab/movies-app/actions/workflows/10856214/dispatches \
-          --header 'authorization: token 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' \
+          --header "authorization: token $TOKEN" \
           -d '{"ref":"master"}'
   publish:
     needs: integration-test
