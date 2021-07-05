@@ -1,6 +1,0 @@
-POST https://api.github.com/repos/dreckguy/movies-app/actions/workflows/test.yaml/dispatches
-content-type: application/json
-Authorization: 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
-accept: application/vnd.github.v3+json
-
-{"event_type":"event_type"}
