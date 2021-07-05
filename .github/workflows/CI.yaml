@@ -27,7 +27,7 @@ jobs:
     env:
       TOKEN: ${{ secrets.PAT }}
     steps:
-    - name: run Api
+    - name: Call the test workflow
       run: |
         curl --request POST --fail \
           --url https://api.github.com/repos/QualiSystemsLab/movies-app/actions/workflows/10856214/dispatches \
