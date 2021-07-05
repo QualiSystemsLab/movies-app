@@ -27,8 +27,6 @@ jobs:
     env:
       TOKEN: ${{ secrets.PAT }}
     steps:
-    - uses: actions/checkout@v2
-
     - name: run Api
       run: |
         curl --request POST --fail \
