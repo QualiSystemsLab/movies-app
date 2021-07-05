@@ -31,9 +31,9 @@ jobs:
 
     - name: run Api
       run: |
-        curl --request POST \
+        curl --request POST --fail \
           --url https://api.github.com/repos/QualiSystemsLab/movies-app/actions/workflows/10856214/dispatches \
-          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'authorization: token $TOKEN' \
           --header 'content-type: application/json' \
   publish:
     needs: integration-test
