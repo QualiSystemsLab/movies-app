@@ -33,7 +33,7 @@ jobs:
       run: |
         curl --request POST --fail \
           --url https://api.github.com/repos/QualiSystemsLab/movies-app/actions/workflows/10856214/dispatches \
-          --header 'authorization: token $TOKEN' \
+          --header 'authorization: token ${{ secrets.PAT }}' \
           --header 'content-type: application/vnd.github.v3+json' \
           -d {"ref":"master"}
   publish:
