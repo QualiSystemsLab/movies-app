@@ -26,11 +26,10 @@ jobs:
     env:
       TEST_WORKFLOW_ID: '10856214'
     steps:
-    - run: echo "{"ref":"$GITHUB_REF"}"
     - name: Call the test workflow
       run: |
         curl --request POST --fail \
-          --url "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/test/dispatches" \
+          --url "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/test.yaml/dispatches" \
           --header "authorization: token ${{ secrets.PAT }}" \
           -d '{"ref":"master"}'
   publish:
