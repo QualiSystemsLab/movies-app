@@ -24,13 +24,13 @@ jobs:
     #needs: build
     runs-on: ubuntu-latest
     env:
-      TEST_WORKFLOW_ID: 10856214
+      TEST_WORKFLOW_ID: '10856214'
     steps:
     - run: echo "{"ref":"$GITHUB_REF"}"
     - name: Call the test workflow
       run: |
         curl --request POST --fail \
-          --url "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/$TEST_WORKFLOW_ID/dispatches" \
+          --url "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/test/dispatches" \
           --header "authorization: token ${{ secrets.PAT }}" \
           -d '{"ref":"master"}'
   publish:
