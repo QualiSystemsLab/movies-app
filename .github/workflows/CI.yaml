@@ -25,9 +25,7 @@ jobs:
     #needs: build
     runs-on: ubuntu-latest
     env:
-      GITHUB_REPOSITORY: ${{ env.GITHUB_REPOSITORY }}
       TEST_WORKFLOW_ID: 10856214
-      GITHUB_REF: ${{ env.GITHUB_REF }}
     steps:
     - name: Call the test workflow
       run: |
