@@ -25,14 +25,14 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     env:
-      TOKEN: ${{ secrets.PAT }}
+    - TEST_WORKFLOW_ID: 10856214
     steps:
     - name: Call the test workflow
       run: |
         curl --request POST --fail \
-          --url https://api.github.com/repos/QualiSystemsLab/movies-app/actions/workflows/10856214/dispatches \
-          --header "authorization: token $TOKEN" \
-          -d '{"ref":"master"}'
+          --url https://api.github.com/repos/${{ env.GITHUB_REPOSITORY }}/actions/workflows/10856214/dispatches \
+          --header "authorization: token ${{ secrets.PAT }}" \
+          -d '{"ref":"${{ env.GITHUB_REF }}"}'
   publish:
     needs: integration-test
     runs-on: ubuntu-latest
