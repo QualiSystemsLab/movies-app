@@ -20,7 +20,7 @@ jobs:
           blueprint_name: movies-app
           colony_token: ${{ secrets.COLONY_TOKEN }}
           duration: 60
-          timeout: 
+          timeout: 10
           inputs: version=${{ github.event.inputs.version}}
 
       - name: Test link status code
