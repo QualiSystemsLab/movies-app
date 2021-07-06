@@ -25,14 +25,16 @@ jobs:
     #needs: build
     runs-on: ubuntu-latest
     env:
+      GITHUB_REPOSITORY: ${{ env.GITHUB_REPOSITORY }}
       TEST_WORKFLOW_ID: 10856214
+      GITHUB_REF: ${{ env.GITHUB_REF }}
     steps:
     - name: Call the test workflow
       run: |
         curl --request POST --fail \
-          --url https://api.github.com/repos/${{ env.GITHUB_REPOSITORY }}/actions/workflows/10856214/dispatches \
+          --url https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/10856214/dispatches \
           --header "authorization: token ${{ secrets.PAT }}" \
-          -d '{"ref":"${{ env.GITHUB_REF }}"}'
+          -d '{"ref":"$GITHUB_REF"}'
   publish:
     needs: integration-test
     runs-on: ubuntu-latest
