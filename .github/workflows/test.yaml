@@ -9,7 +9,9 @@ on:
 jobs:
   integration-test:
     runs-on: ubuntu-latest
-    steps: 
+    steps:
+      - name: Print result URL
+        run: echo "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
       - name: Start Colony Sandbox
         id: start-sandbox
         uses: QualiSystemsLab/colony-start-sb-action@v0.0.1
@@ -18,7 +20,7 @@ jobs:
           blueprint_name: movies-app
           colony_token: ${{ secrets.COLONY_TOKEN }}
           duration: 60
-          timeout: 5
+          timeout: 
           inputs: version=${{ github.event.inputs.version}}
 
       - name: Test link status code
@@ -29,4 +31,3 @@ jobs:
           space: Trial
           sandbox_id: ${{ steps.start-sandbox.outputs.sandbox_id }}
           colony_token: ${{ secrets.COLONY_TOKEN }}
-      - run: echo $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
