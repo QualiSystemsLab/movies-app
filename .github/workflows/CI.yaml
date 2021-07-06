@@ -27,6 +27,7 @@ jobs:
     env:
       TEST_WORKFLOW_ID: 10856214
     steps:
+    - run: echo $GITHUB_REPOSITORY
     - name: Call the test workflow
       run: |
         curl --request POST --fail \
