@@ -15,7 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: echo $GITHUB_SHA
       - run: echo "TAG=$GITHUB_SHA" >> $GITHUB_ENV
       - run: echo $TAG
       - run: docker-compose build
@@ -27,7 +26,7 @@ jobs:
     env:
       TEST_WORKFLOW_ID: 10856214
     steps:
-    - run: echo $GITHUB_REPOSITORY
+    - run: echo "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/10856214/dispatches"
     - name: Call the test workflow
       run: |
         curl --request POST --fail \
