@@ -1,5 +1,7 @@
 name: CI
 on: [push,workflow_dispatch]
+env:
+  APP_NAME: 'movies-app'
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -23,8 +25,6 @@ jobs:
   integration-test:
     needs: build
     runs-on: ubuntu-latest
-    env:
-      APP_NAME: 'movies-app'
     steps:
     - name: Call the test workflow
       run: |
