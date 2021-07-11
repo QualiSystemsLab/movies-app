@@ -22,20 +22,9 @@ jobs:
       - run: docker-compose build
       - run: docker login -u colonysamples -p ${{ secrets.DOCKERHUB_PASSWORD }}
       - run: docker-compose push
-  publish:
-    needs: integration-test
-    runs-on: ubuntu-latest
-    env:
-      TAG: latest
-    steps:
-      - uses: actions/checkout@v1
-      - run: echo "TAG=latest" >> $GITHUB_ENV
-      - run: echo $TAG
-      - run: docker-compose build
-      - run: docker login -u colonysamples -p ${{ secrets.DOCKERHUB_PASSWORD }}
-      - run: docker-compose push
   integration-test:
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - name: Print result URL
         run: echo "$GITHUB_RUN_ID"
@@ -58,3 +47,15 @@ jobs:
           space: Trial
           sandbox_id: ${{ steps.start-sandbox.outputs.sandbox_id }}
           colony_token: ${{ secrets.COLONY_TOKEN }}
+  publish:
+    needs: integration-test
+    runs-on: ubuntu-latest
+    env:
+      TAG: latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: echo "TAG=latest" >> $GITHUB_ENV
+      - run: echo $TAG
+      - run: docker-compose build
+      - run: docker login -u colonysamples -p ${{ secrets.DOCKERHUB_PASSWORD }}
+      - run: docker-compose push
