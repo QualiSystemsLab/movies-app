@@ -1,0 +1,6 @@
+name: Check run result
+auther: ophir.h@quali.com
+description: check if run completed and if so gives result
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
