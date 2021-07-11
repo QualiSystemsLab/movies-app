@@ -22,16 +22,6 @@ jobs:
       - run: docker-compose build
       - run: docker login -u colonysamples -p ${{ secrets.DOCKERHUB_PASSWORD }}
       - run: docker-compose push
-  integration-test:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - name: Call the test workflow
-      run: |
-        curl --request POST --fail \
-          --url "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/${APP_NAME}-test.yaml/dispatches" \
-          --header "authorization: token ${{ secrets.PAT }}" \
-          -d '{"ref":"master"}'
   publish:
     needs: integration-test
     runs-on: ubuntu-latest
