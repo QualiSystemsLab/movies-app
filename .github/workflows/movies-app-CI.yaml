@@ -24,12 +24,12 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     env:
-      TEST_WORKFLOW_ID: '10856214'
+      APP_NAME: 'movies-app'
     steps:
     - name: Call the test workflow
       run: |
         curl --request POST --fail \
-          --url "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/movies-app-test.yaml/dispatches" \
+          --url "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/${APP_NAME}-test.yaml/dispatches" \
           --header "authorization: token ${{ secrets.PAT }}" \
           -d '{"ref":"master"}'
   publish:
