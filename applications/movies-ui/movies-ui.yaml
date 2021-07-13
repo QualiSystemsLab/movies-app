@@ -26,7 +26,7 @@ source:
     username: adminuser
     docker_image:
        - name: colonysamples/movies-ui
-         tag: latest
+         tag: $DOCKER_TAG
          username: root
   os_type: linux
 spec_version: 1
