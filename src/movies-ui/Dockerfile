@@ -18,4 +18,4 @@ COPY nginx/start-docker.sh /usr/local/bin
 COPY --from=builder /usr/src/app/build /usr/share/nginx/html
 EXPOSE 80
 ENV API_URL host.docker.internal
-CMD start-docker.sh
+CMD /usr/local/bin/start-docker.sh
