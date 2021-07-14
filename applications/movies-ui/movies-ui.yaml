@@ -20,8 +20,8 @@ configuration:
     script: movies-ui-command.sh
   healthcheck:
     timeout: 100
-    #wait_for_ports: ALL
-    script: movies-ui-hc.sh
+    wait_for_ports: ALL
+    #script: movies-ui-hc.sh
 source:
   image:    
     username: adminuser
