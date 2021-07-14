@@ -1,0 +1,5 @@
+#### HELLO
+GET localhost:7000
+
+### LIST MOVIES
+http://localhost:7000/api/movies
